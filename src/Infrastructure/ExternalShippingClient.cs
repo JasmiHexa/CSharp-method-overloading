@@ -3,6 +3,7 @@ using CSharpSyntheticRepo.Models;
 
 namespace CSharpSyntheticRepo.Infrastructure;
 
+
 public sealed class ExternalShippingClient
 {
     private readonly ConsoleLogger _logger;

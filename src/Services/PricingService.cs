@@ -47,5 +47,3 @@ public sealed class PricingService
         _logger.Log(LogLevel.Debug, $"Subtotal: {subtotal:0.00} {order.Currency}");
     }
 }
-
-

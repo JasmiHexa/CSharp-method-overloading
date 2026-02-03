@@ -6,5 +6,3 @@ public sealed record OrderItem(
     decimal UnitPrice,
     string Currency
 );
-
-

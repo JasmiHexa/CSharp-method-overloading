@@ -5,6 +5,7 @@ using CSharpSyntheticRepo.Services;
 
 namespace CSharpSyntheticRepo.Controllers;
 
+
 public sealed class OrderController
 {
     private readonly ConsoleLogger _logger;

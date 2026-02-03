@@ -36,5 +36,3 @@ public sealed class PaymentService
         return Result<string>.Ok(auth);
     }
 }
-
-

@@ -9,6 +9,7 @@ public enum LogLevel
     Error = 4,
 }
 
+
 public sealed class ConsoleLogger
 {
     private readonly object _lock = new();

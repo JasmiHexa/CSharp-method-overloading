@@ -36,5 +36,3 @@ public sealed class NotificationService
         return Send(email, subject, body);
     }
 }
-
-

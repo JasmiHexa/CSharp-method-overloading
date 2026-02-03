@@ -9,5 +9,3 @@ public sealed class Order
 
     public string Currency => Items.Count == 0 ? "USD" : Items[0].Currency;
 }
-
-

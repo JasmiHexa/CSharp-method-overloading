@@ -8,6 +8,7 @@ public readonly record struct Result(bool Success, string Error)
     public override string ToString() => Success ? "OK" : $"FAIL: {Error}";
 }
 
+
 public readonly record struct Result<T>(bool Success, T? Value, string Error)
 {
     public static Result<T> Ok(T value) => new(true, value, string.Empty);

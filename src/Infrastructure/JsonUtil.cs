@@ -7,6 +7,7 @@ public static class JsonUtil
     // Overload set #2
     public static string Serialize(object value)
         => JsonSerializer.Serialize(value);
+        
 
     // Overload set #2 (same param count as Serialize(object) but different param types)
     public static string Serialize(string value)

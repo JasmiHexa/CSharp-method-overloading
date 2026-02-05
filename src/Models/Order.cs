@@ -1,11 +1,26 @@
-namespace CSharpSyntheticRepo.Models;
+using System;
+using System.Collections.Generic;
 
-public sealed class Order
+namespace CSharpSyntheticRepo.Models
 {
-    public required string Id { get; init; }
-    public required string CustomerEmail { get; init; }
-    public DateTime CreatedUtc { get; init; } = DateTime.UtcNow;
-    public List<OrderItem> Items { get; init; } = new();
+    public sealed class Order
+    {
+        public string Id { get; set; }
+        public string CustomerEmail { get; set; }
+        public DateTime CreatedUtc { get; set; }
+        public List<OrderItem> Items { get; set; }
 
-    public string Currency => Items.Count == 0 ? "USD" : Items[0].Currency;
+        public Order()
+        {
+            CreatedUtc = DateTime.UtcNow;
+            Items = new List<OrderItem>();
+        }
+
+        public string Currency
+        {
+            get { return Items.Count == 0 ? "USD" : Items[0].Currency; }
+        }
+    }
 }
+
+

@@ -1,31 +1,46 @@
 using CSharpSyntheticRepo.Common;
 using CSharpSyntheticRepo.Models;
 
-namespace CSharpSyntheticRepo.Infrastructure;
+using System;
+using System.Collections.Generic;
 
-public sealed class InMemoryOrderRepository
+namespace CSharpSyntheticRepo.Infrastructure
 {
-    private readonly Dictionary<string, Order> _orders = new(StringComparer.OrdinalIgnoreCase);
-    private readonly ConsoleLogger _logger;
-
-    public InMemoryOrderRepository(ConsoleLogger logger) => _logger = logger;
-
-    // Overload set #3
-    public Result Save(Order order) => Save(order.Id, order);
-
-
-    // Overload set #3
-    public Result Save(string id, Order order)
+    public sealed class InMemoryOrderRepository
     {
-        _orders[id] = order;
-        _logger.Log(LogLevel.Debug, $"Repo saved order {id} (items={order.Items.Count})");
-        return Result.Ok();
-    }
+        private readonly Dictionary<string, Order> _orders;
+        private readonly ConsoleLogger _logger;
 
-    public Result<Order> Get(string id)
-        => _orders.TryGetValue(id, out var o)
-            ? Result<Order>.Ok(o)
-            : Result<Order>.Fail($"Order '{id}' not found");
+        public InMemoryOrderRepository(ConsoleLogger logger)
+        {
+            _logger = logger;
+            _orders = new Dictionary<string, Order>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        // Overload set #3
+        public Result Save(Order order)
+        {
+            return Save(order.Id, order);
+        }
+
+        // Overload set #3
+        public Result Save(string id, Order order)
+        {
+            _orders[id] = order;
+            _logger.Log(LogLevel.Debug, "Repo saved order " + id + " (items=" + order.Items.Count + ")");
+            return Result.Ok();
+        }
+
+        public Result<Order> Get(string id)
+        {
+            Order o;
+            if (_orders.TryGetValue(id, out o))
+            {
+                return Result<Order>.Ok(o);
+            }
+            return Result<Order>.Fail("Order '" + id + "' not found");
+        }
+    }
 }
 
 
